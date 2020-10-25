@@ -29,9 +29,9 @@ def quicksort_ascending(nums):
 def read_from_file(filename):
     arr = []
     try:
-        with open(filename, 'r') as file:
-            for line in file.read().splitlines():
-                arr.append(line)
+        with open(filename, 'r') as file: # open file with name 'file'
+            for line in file.read().splitlines(): # read file line by line
+                arr.append(line) # and append them to an array
         
         file.close()
 
@@ -43,12 +43,12 @@ def read_from_file(filename):
     
 def write_to_file(ascending_arr, descending_arr, filename):
     try:
-        with open(filename, 'w') as file:
-            for i in range(len(ascending_arr)):
-                file.write(ascending_arr[i])
-                file.write('\t')
-                file.write(descending_arr[i])
-                file.write('\n')
+        with open(filename, 'w') as file: # open file with name 'file'
+            for i in range(len(ascending_arr)): # writing ascending and descending sorted array in a file
+                file.write(ascending_arr[i]) # write an element from ascending sorted array
+                file.write('\t') # add tabulation
+                file.write(descending_arr[i]) # write an element from descending sorted array
+                file.write('\n') # add new line
 
         file.close()
     except:
@@ -57,26 +57,26 @@ def write_to_file(ascending_arr, descending_arr, filename):
 
 if __name__ == '__main__':
     
-    input_filename = input('Enter the absolute path to input file: ')
+    input_filename = input('Enter the absolute path to input file: ') # asking for an input filename
     print()
-    str_array = read_from_file(input_filename)
+    str_array = read_from_file(input_filename) # reading array from file to a str_array variable
 
-    ascending_sorted_array = quicksort_ascending(str_array)
-    descending_sorted_array = quicksort_descending(str_array)
+    ascending_sorted_array = quicksort_ascending(str_array) # sorting the specified array in ascending order
+    descending_sorted_array = quicksort_descending(str_array) # sorting the specified array in descending order
 
-    all_arrays = []
-    all_arrays.append(['Original array', 'Ascending sorted array', 'Descending sorted array'])
+    all_arrays = [] # initialize an array for terminal table
+    all_arrays.append(['Original array', 'Ascending sorted array', 'Descending sorted array']) # adding the first line in the table
 
     for i in range(len(str_array)):
-        all_arrays.append([str_array[i], ascending_sorted_array[i], descending_sorted_array[i]])
+        all_arrays.append([str_array[i], ascending_sorted_array[i], descending_sorted_array[i]]) # adding an element from each array
 
 
-    table = AsciiTable(all_arrays)
-    table.justify_columns[0] = 'center'
-    table.justify_columns[1] = 'center'
-    table.justify_columns[2] = 'center'
+    table = AsciiTable(all_arrays) # initializing Ascii table
+    table.justify_columns[0] = 'center' # -----|
+    table.justify_columns[1] = 'center' #      | ===> justiying all columns to center
+    table.justify_columns[2] = 'center' # -----|
     print(table.table)
 
-    output_filename = input('Enter the absolute path to output file: ')
+    output_filename = input('Enter the absolute path to output file: ') # asking for an output filename
    
-    write_to_file(ascending_sorted_array, descending_sorted_array, output_filename)
+    write_to_file(ascending_sorted_array, descending_sorted_array, output_filename) # writing ascending and descending sorted array in new file
